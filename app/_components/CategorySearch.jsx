@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Search } from 'lucide-react';
 import GlobalApi from '../_utils/GlobalApi';
 import Image from 'next/image';
+import Link from 'next/link';
 
 function CategorySearch() {
 
@@ -43,14 +44,20 @@ function CategorySearch() {
       <Button type="submit"><Search className='h-5 w-5 mr-2' />Search</Button>
     </div>
 
-        {/* Display List of Categories */}
-        <div
-        className='grid grid-cols-2 md:grid-col-4 lg:grid-cols-6 mt-5'>
 
-        {!treatmentList.length > 0 ? treatmentList.map((item,index)=> index < 6 && (
+        {/* Display List of Categories */}
+        <h2
+        className='text-gray-600 font-normal text-2xl px-5 mt-8'>
+           What We Are <span className='text-secondary'>Known</span> For 
+        </h2>
+        <div
+        className='grid grid-cols-2 md:grid-col-4 lg:grid-cols-6 mt-1'>
+            
+
+        {treatmentList.length > 0 ? treatmentList.map((item,index)=> index < 6 && (
             <div
             key={index}
-            className='flex flex-col text-center gap-2 items-center p-5 bg-indigo-50 m-2 rounded-lg hover:scale-105 transition-all ease-in-out'>
+            className='flex flex-col text-center gap-2 items-center p-5 bg-indigo-50 m-2 rounded-lg transition-all ease-in-out'>
                 <Image 
                 src={item.attributes?.Icon?.data.attributes?.url}
                 alt='icon'
@@ -65,6 +72,7 @@ function CategorySearch() {
         :
         [1,2,3,4,5,6].map((item,index)=>(
             <div
+            key={index}
         className='h-[130px] w-[120px] bg-slate-200 animate-pulse rounded-lg m-2'>
 
         </div>
