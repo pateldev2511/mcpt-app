@@ -41,7 +41,12 @@ function CategorySearch() {
 
         <div className="flex w-full max-w-sm items-center space-x-2">
       <Input type="text" placeholder="Search..." />
-      <Button type="submit"><Search className='h-5 w-5 mr-2' />Search</Button>
+      <Link 
+      className='flex items-center gap-1 bg-primary text-white px-3 py-2 rounded-md hover:bg- hover:text-primary cursor-pointer transition-all ease-in-out'
+      href={'/search/Physiotherapist'}>
+        <Search className='h-5 w-5 mr-2' />
+        Search
+        </Link>
     </div>
 
 

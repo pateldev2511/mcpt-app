@@ -21,51 +21,50 @@ import { usePathname } from 'next/navigation'
 
 function TherapistsList() {
 
-    const [therapistList, setTherapistList] = useState([])
+    const [categoryList, setCategoryList] = useState([])
     const params = usePathname()
     const category = params.split('/')[2]
 
-  useEffect(()=>{
-    getTherapistList()
-  },[])
+    
 
-  const getTherapistList=()=>{
-    GlobalApi.getTherapistList().then(res=>{
-      console.log('Got the Therapists List ✅',res.data.data)
-      setTherapistList(res.data.data)
-    }).catch(err=>{
-      console.log('Something went wrong API call ❌',err)
-    })
-  }
+    useEffect(() => {
+        getCategoryList()
+    }, [])
 
-  function capitalizeWords(string) {
-    if (!string) return string; // Handle empty or undefined strings
-    return string
-      .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(' ');
-  }
+    const getCategoryList = () => {
+            GlobalApi.getCategoryList().then(res => {
+                
+                setCategoryList(res.data.data)
+            }).catch(err => {
+                console.log(err)
+            })
+    }
 
 
   return (
     <div
-    className='h-screen  mt-5 flex flex-col'>
+    className='h-screen relative mt-5 flex flex-col'>
         <Command>
-  <CommandInput placeholder="Search Name..." />
+  <CommandInput placeholder="Search..." />
   <CommandList
   className='overflow-visible'>
     <CommandEmpty>No results found.</CommandEmpty>
     <CommandGroup heading="Suggestions"> 
-        {therapistList.length > 0 ? therapistList.map((therapist,index)=> index < 2 && (
-            <CommandItem key={index}>
+        {categoryList && categoryList.length > 0 ? categoryList.map((categories,index)=> (
+            <CommandItem 
+            key={index}>
                 <Link
-                href={''}
-                className={`p-2 flex items-center text-sm text-secondary rounded-md cursor-pointer w-full 
-                    ${capitalizeWords(category) == capitalizeWords(therapist.attributes?.Name) && 'bg-secondary text-white'}
+                href={'/search/'+ categories.attributes?.Name}
+                className={`p-2 flex gap-2 text-[12px] text-secondary items-center rounded-md cursor-pointer w-full
+                    ${category == categories.attributes?.Name && 'bg-primary text-white'}
                 `}>
-                    <User className='w-5 h-5 text-secondary mr-1'/>
+                    <Image 
+                    src={categories.attributes?.Image?.data?.attributes?.url}
+                    width={40}
+                    height={40}
+                    className='w-5 h-5 text-primary mr-1'/>
                     <label>
-                    {therapist.attributes?.Name}
+                    {categories.attributes?.Name}
                     </label>
                     
                 </Link>

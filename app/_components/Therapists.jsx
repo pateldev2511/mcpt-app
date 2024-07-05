@@ -4,7 +4,7 @@ import React from 'react'
 import { MapPin } from 'lucide-react';
 import { Skeleton } from "@/components/ui/skeleton"
 
-function Therapists({therapistList}) {
+function Therapists({therapistList,heading='Therapists'}) {
   return (
     <div
     className='mb-10 px-8'>
@@ -12,7 +12,7 @@ function Therapists({therapistList}) {
        className='font-bold text-2xl text-gray-700' >
             Our 
             <span 
-            className='text-primary'> Therapists
+            className='text-primary'> {heading}
             </span>
         </h2>
         <div
@@ -50,17 +50,22 @@ function Therapists({therapistList}) {
                             <MapPin className='h-5 w-5 mr-1'/>{therapist.attributes?.Address}
                         </Link>
 
+                        <Link
+                        href={'/details/'+therapist?.id}
+                        className='w-full'>
                         <h2
                         className='p-2 px-3 border-[1px] border-primary text-primary rounded-full text-center w-full text-sm mt-4 hover:bg-primary hover:text-white hover:cursor-pointer'>
                             Book Now
                         </h2>
+                        </Link>
                     </div>
                 </div>
             ))
             :
             // Skeleton Loader
             [1,2].map((item,index)=>(
-            <div>
+            <div
+            key={index}>
                 <Skeleton className="h-[400px] w-[550px] rounded-xl" />
                 <div className="mt-2"> 
                 <Skeleton className="h-4 w-[250px] my-2" />

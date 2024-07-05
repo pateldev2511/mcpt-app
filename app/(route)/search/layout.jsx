@@ -1,6 +1,7 @@
 import React from 'react'
 import TherapistsList from './_components/TherapistsList'
 
+
 export const metadata = {
   title: "Search",
   description: "Search your doctor by Name, Specialty, or Location.",
@@ -17,8 +18,9 @@ function layout({children}) {
       </div>
 
       <div
-      className='col-span-3'>
+      className='sm:col-span-4 md:col-span-3 lg:col-span-3'>
           {children}
+          
       </div>
     
     </div>
