@@ -87,14 +87,14 @@ function Header() {
                     className='w-45'>
                         <ul 
                         className='flex flex-col gap-2'>
-                            <li
+                            {/* <li
                             className='cursor-pointer hover:bg-slate-100 p-2 rounded-md'>
                                 Profile
-                            </li>
-                            <li
+                            </li> */}
+                            <Link href='/my-booking'
                             className='cursor-pointer hover:bg-slate-100 p-2 rounded-md'>
                                 My Bookings
-                            </li>
+                            </Link>
                             <li
                             className='cursor-pointer hover:bg-slate-100 p-2 rounded-md'>
                                 <LogoutLink>

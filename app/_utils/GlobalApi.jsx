@@ -33,6 +33,15 @@ const getTherapistByCategory = (category) => {
 // Send Email
   const sendEmail = (data) => axios.post('/api/sendEmail', data);
 
+  // Get Booking List
+
+  const getUserBookingList = (UserEmail) => AxiosClient.get('/appointments?[filters][Email][$eq]='+UserEmail+
+    '&populate[therapist][populate][Image][populate][0]=url&populate=*')
+
+    // Delete Booking
+
+    const deleteBooking = (id) => AxiosClient.delete('/appointments/'+id)
+
 export default {
     getCategoryList,
     getTreatmentList,
@@ -40,5 +49,7 @@ export default {
     getTherapistByCategory,
     getTherapistById,
     BookAppointment,
-    sendEmail
+    sendEmail,
+    getUserBookingList,
+    deleteBooking
 }
