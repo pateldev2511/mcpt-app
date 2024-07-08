@@ -6,6 +6,8 @@ import CancelAppointment from './CancelAppointment'
 import SkeletonLoader from './SkeletonLoader'
 import GlobalApi from '@/app/_utils/GlobalApi'
 import { toast } from 'sonner'
+import { google, outlook, office365 } from "calendar-link";
+import Link from 'next/link'
 
 function BookingList({ bookingList, expired, updateRecord }) {
   const [loading, setLoading] = useState(true)
@@ -36,15 +38,25 @@ function BookingList({ bookingList, expired, updateRecord }) {
   return (
     <div className='p-2 my-2'>
       {loading
-        ? Array.from({ length: 5 }).map((_, index) => (
+        ? Array.from({ length: 3 }).map((_, index) => (
             <SkeletonLoader key={index} />
           ))
         : bookingList &&
-          bookingList.map((item, index) => {  
+          bookingList.map((item, index) => {
+                const event = {
+                    title: "Movement Care PT Appointment",
+                    description: "Be thereWe are looking forward to seeing you for your physical therapy session at Movement Care PT. Our expert therapist will provide personalized care to help you achieve your wellness goals. Please arrive a few minutes early.",
+                    start: item.attributes?.Date,
+                    duration: [1, "hour"],
+                    location: '19 W 45th St STE 501, New York, NY 10036'
+                    };
+                    
             return (
+                <div
+                className='items-center border p-3 m-2 bg-white rounded-md shadow-md'>
               <div
                 key={index}
-                className='flex gap-4 items-center border p-3 m-2 bg-white rounded-md shadow-md'
+                className='flex gap-4 items-center w-full'
               >
                 <Image
                   src={
@@ -83,7 +95,46 @@ function BookingList({ bookingList, expired, updateRecord }) {
                     </span>
                     Time: {item.attributes?.Time}
                   </h2>
+                  
                 </div>
+                
+              </div>
+              <h2
+              className='flex justify-end mt-4'>
+                <Link
+                href={google(event)}
+                target='_blank'
+                className='p-2 border rounded-sm mx-1 hover:border-gray-500 hover:scale-105 transition-all ease-in-out'>
+                    <Image
+                    src='/g-calendar-icon.svg'
+                    alt='Google Calendar Icon'
+                    width={20}
+                    height={20}
+                    />
+                </Link>
+                <Link
+                href={outlook(event)}
+                target='_blank'
+                className=' p-2 border rounded-sm mx-1'>
+                    <Image
+                    src='/outlook-icon.svg'
+                    alt='Outlook Calendar Icon'
+                    width={20}
+                    height={20}
+                    />
+                </Link>
+                <Link
+                href={office365(event)}
+                target='_blank'
+                className=' p-2 border rounded-sm mx-1'>
+                    <Image
+                    src='/microsoft-icon.svg'
+                    alt='MS Icon'
+                    width={20}
+                    height={20}
+                    />
+                </Link>
+              </h2>
               </div>
             )
           })}

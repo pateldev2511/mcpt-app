@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 import BookingConfirmationEmail from '@/emails';
-import { google, outlook, office365, yahoo, ics } from "calendar-link";
+import { google, outlook, office365 } from "calendar-link";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
