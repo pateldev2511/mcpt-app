@@ -1,10 +1,30 @@
 import { Button } from '@/components/ui/button';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Hero() {
+  const [bgClass, setBgClass] = useState('bg-[url("/bg-hero.jpg")]');
+
+  useEffect(() => {
+    const backgrounds = [
+      'bg-[url("/bg-hero.jpg")]',
+      'bg-[url("/bg-hero2.jpeg")]',
+      'bg-[url("/bg-hero3.jpg")]'
+    ];
+    let index = 0;
+
+    const changeBackground = () => {
+      index = (index + 1) % backgrounds.length;
+      setBgClass(backgrounds[index]);
+    };
+
+    const interval = setInterval(changeBackground, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
-      className="relative bg-[url('/bg-hero.jpg')] bg-cover bg-center bg-no-repeat"
+      className={`relative bg-cover object-cover bg-center bg-no-repeat ${bgClass} bg-animation`}
     >
       <div className="absolute inset-0 bg-white/75 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/95 sm:to-white/25"></div>
 

@@ -4,6 +4,8 @@ import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import { Toaster } from "@/components/ui/sonner"
 
+
+
 const outfit = Outfit({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], // specify all weights available for Outfit
@@ -19,13 +21,21 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={outfit.className}>
         <div
+        className="flex flex-col min-h-screen">
+        <div
         className="md:px-20">
 
       <Header />
+      </div>
+      <main className="flex-grow">
         {children}
-        <Toaster />
-        </div>
+      <Toaster />
+      </main>
+        
+        
+       
         <Footer />
+        </div>
         </body>
         
     </html>

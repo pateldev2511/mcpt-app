@@ -7,6 +7,8 @@ import CategorySearch from "./_components/CategorySearch";
 import Therapists from "./_components/Therapists";
 import GlobalApi from "./_utils/GlobalApi";
 import { useEffect, useState } from "react";
+import Reviews from "./_components/Reviews";
+import GoogleMap from "./_components/GoogleMap";
 
 export default function Home() {
 
@@ -37,6 +39,8 @@ export default function Home() {
 
         {/* Display List of Therapists */}
         <Therapists therapistList={therapistList}/>
+        <Reviews />
+        <GoogleMap/>
     </div>
   );
 }

@@ -32,17 +32,17 @@ function CategorySearch() {
         className='font-bold text-4xl tracking-wide'>
             Search 
             <span
-            className='text-secondary'> Doctors</span>
+            className='text-secondary'> Therapist</span>
         </h2>
         <h2
         className='text-gray-500 font-light text-xl px-5'>
-           Search Your Doctor Name 
+           Look for your therapist 
         </h2>    
 
         <div className="flex w-full max-w-sm items-center space-x-2">
-      <Input type="text" placeholder="Search..." />
+      
       <Link 
-      className='flex items-center gap-1 bg-primary text-white px-3 py-2 rounded-md hover:bg- hover:text-primary cursor-pointer transition-all ease-in-out'
+      className='flex flex-grow w-full items-center justify-center gap-1 border outline text-primary border-primary hover:bg-primary hover:text-white px-3 py-2 rounded-md  cursor-pointer transition-all ease-in-out '
       href={'/search/Physiotherapist'}>
         <Search className='h-5 w-5 mr-2' />
         Search
